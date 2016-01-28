@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "socket.io": "^0.9.6",
-    "connect": "^1.9.2"
+    "connect": "^1.9.2",
+    "express": "2.5.11"
   }
 }
