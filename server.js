@@ -1,9 +1,11 @@
 var io = require('socket.io'),
     connect = require('connect');
 
-var port = process.env.PORT || 8080;
+// var port = process.env.PORT || 8080;
 
-var chat_room = io.listen(port);
+var app = connect().use(connect.static('public')).listen(process.env.PORT || 3000);
+
+var chat_room = io.listen(app);
 var usernames = {};
 
 
