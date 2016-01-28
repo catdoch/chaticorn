@@ -1,0 +1,43 @@
+.DS_Store
+.bash_history
+.cache
+.npm
+.nvm
+.viminfo
+
+# WordPress config files
+wp-config.php
+db-config.php
+
+# WordPress content
+public/wp-content/uploads
+
+# Server stuff
+.htpasswd
+.htaccess
+.bash_logout
+.bashrc
+.profile
+.ssh/
+
+# sass
+.sass-cache
+
+# node
+/node_modules
+
+# plugins - from external repo's
+/public/wp-content/plugins/christmas-tree-touchpoints
+
+# public - compiled files
+/public/wp-content/themes/ourtesco/css
+/public/wp-content/themes/ourtesco/javascript
+/public/wp-content/themes/ourtesco/*.css
+/public/wp-content/themes/ourtesco/svg/*.svg
+
+# christmas touchpoints
+/public/wp-content/themes/ourtesco/templates/christmas-touchpoints.php
+
+# user download
+data.zip
+data.csv
