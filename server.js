@@ -3,7 +3,7 @@ var io = require('socket.io'),
 
 var port = process.env.PORT || 8080;
 
-var chat_room = io.listen();
+var chat_room = io.listen(port);
 var usernames = {};
 
 
