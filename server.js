@@ -1,6 +1,5 @@
 var io = require('socket.io'),
-    connect = require('connect'),
-    express = require('express');
+    connect = require('connect');
 
 
 var app = connect().use(connect.static('public')).listen(3000);
