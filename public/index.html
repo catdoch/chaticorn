@@ -9,25 +9,18 @@
             $(document).ready(function(){
 
             var socket = io.connect();
+            var prompt = swal({title: "Username please",
+                                text: "What's your name?",
+                                type: "input",
+                                showCancelButton: false,
+                                closeOnConfirm: true,
+                                animation: "slide-from-top",
+                                inputPlaceholder: "What's your name?"
+                            });
 
             socket.on('connect', function(){
                 // call the server-side function 'adduser' and send one parameter (value of prompt)
-                socket.emit('adduser', swal({
-                                        title: "Username please",
-                                        text: "What's your name?",
-                                        type: "input",
-                                        showCancelButton: false,
-                                        closeOnConfirm: true,
-                                        animation: "slide-from-top",
-                                        inputPlaceholder: "What's your name?"
-                                    }, function(inputValue) {
-                                        if (inputValue === false) return false;
-                                        if (inputValue === "") {
-                                            swal.showInputError("You need to write something!");
-                                            return false
-                                        }
-                                    });
-                );
+                socket.emit('adduser', prompt);
             });
 
             socket.on('updatechat', function (username, data) {
