@@ -35,4 +35,3 @@ chat_room.sockets.on('connection', function(socket) {
         chat_room.sockets.emit('updatechat', socket.username, data);
     });
 });
-

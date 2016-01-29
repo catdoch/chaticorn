@@ -42,6 +42,14 @@
                 log_chat_message(data.message);
             });
 
+            var nullDiv = $('#users div')
+
+            $.each(nullDiv, function(index, value) {
+                if (value.innerText === 'null') {
+                    $(this).hide();
+                }
+            });
+
             $('#datasend').click( function() {
                 var message = $('#data').val();
                 $('#data').val('');
