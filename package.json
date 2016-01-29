@@ -7,8 +7,8 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "socket.io": "^0.9.6",
-    "connect": "^1.9.2",
-    "express": "2.5.11"
+    "connect": "^3.4.1",
+    "express": "^5.0.0-alpha.2",
+    "socket.io": "^1.4.5"
   }
 }
