@@ -1,10 +1,17 @@
 var io = require('socket.io'),
-    connect = require('connect');
+    http = require ('http'),
+    express = require('express'),
+    app = express(),
+    server = http.createServer(app),
+    port = process.env.PORT || 5000;
 
-var app = connect().use(connect.static('public')).listen(process.env.PORT || 3000);
-var chat_room = io.listen(app);
+app.use(express.static(__dirname + "/public"));
+
+var chat_room = io.listen(server);
 
 var usernames = {};
+
+server.listen(port);
 
 
 chat_room.sockets.on('connection', function(socket) {
