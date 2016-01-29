@@ -19,12 +19,16 @@
                             });
 
             socket.on('connect', function(){
+                prompt;
                 // call the server-side function 'adduser' and send one parameter (value of prompt)
-                socket.emit('adduser', prompt);
+                $('.confirm').click(function(){
+                    socket.emit('adduser', $('.sweet-alert input').val());
+                });
             });
 
             socket.on('updatechat', function (username, data) {
                 $('#conversation').append('<li><b>'+ username + ':</b><p> ' + data + '</p></li>');
+                $("#conversation").scrollTop($("#conversation")[0].scrollHeight);
             });
 
             socket.on('updateusers', function(data) {
@@ -300,7 +304,7 @@
     font-weight: 500;
     -webkit-border-radius: 4px;
     border-radius: 5px;
-    padding: 10px 32px;
+    padding: 10px 52px 10px 32px;
     margin: 26px 5px 0 5px;
     cursor: pointer; }
     .sweet-alert button:focus {
