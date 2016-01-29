@@ -1,5 +1,5 @@
 var io = require('socket.io'),
-    http = require ('http'),
+    http = require('http'),
     express = require('express'),
     app = express(),
     server = http.createServer(app),
@@ -35,3 +35,4 @@ chat_room.sockets.on('connection', function(socket) {
         chat_room.sockets.emit('updatechat', socket.username, data);
     });
 });
+
