@@ -49,6 +49,7 @@
             socket.on('updateusers', function(data) {
                 $('#users').empty();
                 $.each(data, function(key, value) {
+                	console.log(value);
                     $('#users').append('<div>' + key + '</div>');
                 });
             });
@@ -159,10 +160,7 @@
         }
         #conversation li { 
             padding: 5px 10px; 
-            background: rgba(255, 255, 255, 0.85);
-        }
-        #conversation li:nth-child(odd) { 
-            background: rgba(255, 250, 205, 0.85); 
+            opacity: 0.7;
         }
 
         ::-webkit-scrollbar {
