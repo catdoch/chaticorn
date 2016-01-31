@@ -16,9 +16,11 @@ server.listen(port);
 
 chat_room.sockets.on('connection', function(socket) {
 
-    socket.on('adduser', function(username) {
+    socket.on('adduser', function(username, colour) {
         socket.username = username;
+        socket.colour = colour;
         usernames[username] = username;
+        usernames[colour] = colour;
 
         socket.emit('updatechat', 'SERVER', 'Welcome to the chat room!');
         socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
@@ -32,6 +34,6 @@ chat_room.sockets.on('connection', function(socket) {
     });
 
     socket.on('sendchat', function(data) {
-        chat_room.sockets.emit('updatechat', socket.username, data);
+        chat_room.sockets.emit('updatechat', socket.username, data, socket.colour);
     });
 });

@@ -9,6 +9,16 @@
 
             $(document).ready(function(){
 
+
+            	function getRandomColor() {
+				    var letters = '0123456789ABCDEF'.split('');
+				    var color = '#';
+				    for (var i = 0; i < 6; i++ ) {
+				        color += letters[Math.floor(Math.random() * 16)];
+				    }
+				    return color;
+				}
+
             var socket = io.connect();
             var prompt = swal({title: "Username please",
                                 text: "What's your name?",
@@ -17,13 +27,6 @@
                                 closeOnConfirm: true,
                                 animation: "slide-from-top",
                                 inputPlaceholder: "What's your name?"
-                            },
-                            function(inputValue){   
-                                if (inputValue === false) return false;      
-                                if (inputValue === "") {     
-                                    swal.showInputError("You need to write something!");     
-                                    return false  
-                                } 
                             });
 
             socket.on('connect', function(){
@@ -34,12 +37,12 @@
                     if(value === ""){
                         value = 'Anonymous';
                     }
-                    socket.emit('adduser', value);
+                    socket.emit('adduser', value, getRandomColor());
                 });
             });
 
-            socket.on('updatechat', function (username, data) {
-                $('#conversation').append('<li><b>'+ username + ':</b><p> ' + data + '</p></li>');
+            socket.on('updatechat', function (username, data, colour) {
+                $('#conversation').append('<li style="background-color:'+ colour +'"><b>'+ username + ':</b><p> ' + data + '</p></li>');
                 $("#conversation").scrollTop($("#conversation")[0].scrollHeight);
             });
 
