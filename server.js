@@ -20,7 +20,6 @@ chat_room.sockets.on('connection', function(socket) {
         socket.username = username;
         socket.colour = colour;
         usernames[username] = username;
-        // usernames[colour] = colour;
 
         socket.emit('updatechat', 'SERVER', 'Welcome to the chat room!');
         socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');

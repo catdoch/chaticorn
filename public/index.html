@@ -49,7 +49,6 @@
             socket.on('updateusers', function(data) {
                 $('#users').empty();
                 $.each(data, function(key, value) {
-                	console.log(value);
                     $('#users').append('<div>' + key + '</div>');
                 });
             });
@@ -107,6 +106,8 @@
         #userList h4{
             padding: 10px;
             margin:0px;
+            font-size: 1.5em;
+            text-decoration: underline;
         }
         #userList #users div{
             padding: 10px;
@@ -160,7 +161,8 @@
         }
         #conversation li { 
             padding: 5px 10px; 
-            opacity: 0.7;
+            opacity: 0.85;
+            border-top: 1px solid #fff;
         }
 
         ::-webkit-scrollbar {
