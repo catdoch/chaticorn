@@ -1,6 +1,7 @@
 <html>
     <head>
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.css">
         <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
@@ -20,10 +21,9 @@
 				    return color;
 				}
 
-                emojify.setConfig({
-                    emojify_tag_type : 'div',           // Only run emojify.js on this element
+                emojify.setConfig({           // Only run emojify.js on this element
                     only_crawl_id    : null,            // Use to restrict where emojify.js applies
-                    img_dir          : 'images/emoji',  // Directory for emoji images
+                    img_dir          : 'https://github.global.ssl.fastly.net/images/icons/emoji/',  // Directory for emoji images
                     ignored_tags     : {                // Ignore the following tags
                         'SCRIPT'  : 1,
                         'TEXTAREA': 1,
@@ -32,6 +32,7 @@
                         'CODE'    : 1
                     }
                 });
+
 
             var socket = io.connect();
             var prompt = swal({title: "Username please",
@@ -56,9 +57,9 @@
             });
 
             socket.on('updatechat', function (username, data, colour) {
-                emojify.run();
                 $('#conversation').append('<li style="background-color:'+ colour +'"><b>'+ username + ':</b><p> ' + data + '</p></li>');
                 $("#conversation").scrollTop($("#conversation")[0].scrollHeight);
+                emojify.run();
             });
 
             socket.on('updateusers', function(data) {
@@ -163,6 +164,9 @@
         p,b{
             padding-right: 5px;
         }
+        b{
+            vertical-align: middle;
+        }
         input#data {
             padding: 20px;
             width: 45%;
@@ -194,6 +198,14 @@
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.emoji {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  margin-bottom: -0.25em;
+  background-size: contain;
+  vertical-align: text-top;
 }
 
     </style>
