@@ -41,3 +41,5 @@ public/wp-content/uploads
 # user download
 data.zip
 data.csv
+node_modules
+build/*.js
