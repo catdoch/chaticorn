@@ -3,13 +3,16 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    clean: {
+      src: ["build/main.js"]
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'javascript/*',
-        dest: 'build/main.min.js'
+        src: 'javascript/main.js',
+        dest: 'build/main.js'
       }
     }
   });
