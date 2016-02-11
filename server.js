@@ -5,8 +5,8 @@ var io = require('socket.io'),
     server = http.createServer(app),
     port = process.env.PORT || 5000;
 
-app.use('/vendor', express.static(__dirname + '/vendor'));
-app.use('/build', express.static(__dirname + '/build'));
+app.use('/bundled', express.static(__dirname + '/bundled'));
+app.use('/css', express.static(__dirname + '/css'));
 app.use(express.static(__dirname + "/public"));
 
 var chat_room = io.listen(server);
