@@ -8,6 +8,7 @@ var io = require('socket.io'),
 app.use('/bundled', express.static(__dirname + '/bundled'));
 app.use('/css', express.static(__dirname + '/css'));
 app.use(express.static(__dirname + "/public"));
+app.use('/sounds', express.static(__dirname + "/sounds"));
 
 var chat_room = io.listen(server);
 

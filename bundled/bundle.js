@@ -49,6 +49,16 @@ $(document).ready(function() {
         $('#conversation').append('<li style="background-color:' + colour + '"><b>' + username + ':</b><p> ' + data + '</p></li>');
         $("#conversation").scrollTop($("#conversation")[0].scrollHeight);
         emojify.run();
+        var myNotification = new NotificationWrapper(
+            '#', // image icon path goes here
+            'node-webkit is awesome',
+            'Especially now that I can use my own sounds',
+            '/sounds/notif.wav'
+        );
+
+        myNotification.addEventListener('click', function() {
+            console.log('You clicked the notification.');
+        });
     });
 
     socket.on('updateusers', function(data) {
@@ -88,6 +98,41 @@ $(document).ready(function() {
         }
     });
 });
+
+/**
+ * Use composition to expand capabilities of Notifications feature.
+ */
+function NotificationWrapper(appIcon, title, description, soundFile) {
+
+    /**
+     * A path to a sound file, like /sounds/notification.wav
+     */
+    function playSound(soundFile) {
+        if (soundFile === undefined) return;
+        var audio = document.createElement('audio');
+        audio.src = soundFile;
+        audio.play();
+        audio = undefined;
+    }
+
+    /**
+     * Show the notification here.
+     */
+    var notification = new window.Notification(title, {
+        body: description,
+        icon: appIcon
+    });
+
+    /**
+     * Play the sound.
+     */
+    playSound(soundFile);
+
+    /**
+     * Return notification object to controller so we can bind click events.
+     */
+    return notification;
+}
 
 },{}],2:[function(require,module,exports){
 /*! jQuery v2.2.0 | (c) jQuery Foundation | jquery.org/license */
