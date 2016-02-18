@@ -6,6 +6,7 @@ var io = require('socket.io'),
     port = process.env.PORT || 5000;
 
 app.use('/bundled', express.static(__dirname + '/bundled'));
+app.use('/javascript', express.static(__dirname + '/javascript'));
 app.use('/css', express.static(__dirname + '/css'));
 app.use(express.static(__dirname + "/public"));
 app.use('/sounds', express.static(__dirname + "/sounds"));
