@@ -1,23 +1,39 @@
 {
   "name": "chat_room",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "browserify require.js -o bundled/bundle.js",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "connect": "^3.4.1",
     "express": "^5.0.0-alpha.2",
-    "grunt": "0.4.5",
-    "browserify": "*",
-    "grunt-cli": "0.1.13",
-    "grunt-contrib-uglify": "0.11.1",
     "node-emoji": "^1.0.4",
     "socket.io": "^1.4.5",
     "sweetalert": "*",
     "jquery": "*",
-    "growl": "*"
+    "browserify": "11.2.0",
+    "connect-history-api-fallback": "1.1.0",
+    "firebase": "2.3.1",
+    "gulp": "3.9.0",
+    "gulp-autoprefixer": "3.1.0",
+    "gulp-notify": "2.2.0",
+    "gulp-rename": "1.2.2",
+    "gulp-stylus": "2.1.0",
+    "gulp-uglify": "1.4.2",
+    "gulp-util": "3.0.7",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.1.0",
+    "watchify": "3.4.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-css-url-adjuster": "^0.2.3",
+    "gulp-if": "^2.0.0",
+    "gulp-inject": "^4.0.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "moment" : "^2.13.0"
   }
 }

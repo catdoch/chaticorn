@@ -5,11 +5,12 @@ var io = require('socket.io'),
     server = http.createServer(app),
     port = process.env.PORT || 5000;
 
-app.use('/bundled', express.static(__dirname + '/bundled'));
+app.use('/build', express.static(__dirname + '/build'));
 app.use('/javascript', express.static(__dirname + '/javascript'));
 app.use('/css', express.static(__dirname + '/css'));
 app.use(express.static(__dirname + "/public"));
-app.use('/sounds', express.static(__dirname + "/sounds"));
+
+
 
 var chat_room = io.listen(server);
 
@@ -19,6 +20,8 @@ server.listen(port);
 
 
 chat_room.sockets.on('connection', function(socket) {
+
+    var logoffTimer;
 
     socket.on('adduser', function(username, colour) {
         socket.username = username;

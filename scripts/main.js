@@ -1,3 +1,7 @@
+var sweetAlert = require('sweetalert');
+var $ = require('jquery');
+var moment = require('moment');
+
 $(document).ready(function() {
 
     function getRandomColor() {
@@ -22,6 +26,7 @@ $(document).ready(function() {
     });
 
     var socket = io.connect();
+
     var prompt = swal({
         title: "Username please",
         text: "What's your name?",
@@ -34,7 +39,9 @@ $(document).ready(function() {
 
     socket.on('connect', function() {
         prompt;
-        // call the server-side function 'adduser' and send one parameter (value of prompt)
+        // call the server-side function 'adduser' 
+        //and send one parameter (value of prompt)
+
         $('.confirm').click(function() {
             var value = $('.sweet-alert input').val();
             if (value === "") {
@@ -45,19 +52,12 @@ $(document).ready(function() {
     });
 
     socket.on('updatechat', function(username, data, colour) {
-        $('#conversation').append('<li style="background-color:' + colour + '"><b>' + username + ':</b><p> ' + data + '</p></li>');
+        var date = new Date();
+        var prettyDate = moment(date).fromNow();
+
+        $('#conversation').append('<li style="background-color:' + colour + '"><p>'+ prettyDate +'</p><br><b>' + username + ':</b><p> ' + data + '</p></li>');
         $("#conversation").scrollTop($("#conversation")[0].scrollHeight);
         emojify.run();
-        var myNotification = new NotificationWrapper(
-            '#', // image icon path goes here
-            'node-webkit is awesome',
-            'Especially now that I can use my own sounds',
-            '/sounds/notif.wav'
-        );
-
-        myNotification.addEventListener('click', function() {
-            console.log('You clicked the notification.');
-        });
     });
 
     socket.on('updateusers', function(data) {
@@ -97,38 +97,3 @@ $(document).ready(function() {
         }
     });
 });
-
-/**
- * Use composition to expand capabilities of Notifications feature.
- */
-function NotificationWrapper(appIcon, title, description, soundFile) {
-
-    /**
-     * A path to a sound file, like /sounds/notification.wav
-     */
-    function playSound(soundFile) {
-        if (soundFile === undefined) return;
-        var audio = document.createElement('audio');
-        audio.src = soundFile;
-        audio.play();
-        audio = undefined;
-    }
-
-    /**
-     * Show the notification here.
-     */
-    var notification = new window.Notification(title, {
-        body: description,
-        icon: appIcon
-    });
-
-    /**
-     * Play the sound.
-     */
-    playSound(soundFile);
-
-    /**
-     * Return notification object to controller so we can bind click events.
-     */
-    return notification;
-}

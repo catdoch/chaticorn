@@ -1,45 +1,40 @@
+# OS
 .DS_Store
-.bash_history
-.cache
-.npm
-.nvm
-.viminfo
+Thumbs.db
 
-# WordPress config files
-wp-config.php
-db-config.php
+# Composer
+composer.phar
+composer.lock
 
-# WordPress content
-public/wp-content/uploads
-
-# Server stuff
-.htpasswd
-.htaccess
-.bash_logout
-.bashrc
-.profile
-.ssh/
-
-# sass
+# Sass
 .sass-cache
 
-# node
+# Node
 /node_modules
+/npm-debug.log
 
-# plugins - from external repo's
-/public/wp-content/plugins/christmas-tree-touchpoints
+# bower
+/bower_components
 
-# public - compiled files
-/public/wp-content/themes/ourtesco/css
-/public/wp-content/themes/ourtesco/javascript
-/public/wp-content/themes/ourtesco/*.css
-/public/wp-content/themes/ourtesco/svg/*.svg
+# Laravel
+/bootstrap/compiled.php
+/vendor
+.env
+Homestead.yaml
 
-# christmas touchpoints
-/public/wp-content/themes/ourtesco/templates/christmas-touchpoints.php
 
-# user download
-data.zip
-data.csv
-node_modules
-build/*.js
+# Public var files
+!/public/_img/png/sprite/*
+/public/_*
+/public/vendor/*
+/assets/js/generated/*.js
+
+# Testing
+/report/
+
+# phpstorm
+.idea
+
+# Storage
+/storage/tmp/*
+/storage/uploads/*
