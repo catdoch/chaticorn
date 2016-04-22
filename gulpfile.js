@@ -1,23 +1,25 @@
+var $ = require('gulp-load-plugins')();
 var source = require('vinyl-source-stream');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var notify = require('gulp-notify');
+var cssnano = require('cssnano');
+var autoprefixer = require('autoprefixer');
 
 var stylus = require('gulp-stylus');
 var autoprefixer = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var buffer = require('vinyl-buffer');
-var $ = require('gulp-load-plugins')();
 
 var historyApiFallback = require('connect-history-api-fallback');
 
-basePaths = {
-    src: 'css/',
+var basePaths = {
+    src: 'scss/',
     dest: 'build/'
-},
+};
 
 
 /*
@@ -25,11 +27,12 @@ basePaths = {
 */
 
 gulp.task('styles', function() {
-    return gulp.src(basePaths.src + '*.css')
-        .pipe($.concat('screen.css'))
+    return gulp.src(basePaths.src + '*.scss')
         .pipe($.sass({
             includePaths: ['scss']
         }))
+        .pipe($.autoprefixer('last 4 versions'))
+        .pipe($.minifyCss())
         .pipe(gulp.dest('./build/css'))
 });
 
@@ -102,6 +105,6 @@ gulp.task('scripts', function() {
 
 // run 'scripts' task first, then watch for future changes
 gulp.task('default', ['styles', 'scripts'], function() {
-    gulp.watch('css/**/*', ['styles']); // gulp watch for stylus changes
+    gulp.watch('scss/**/*', ['styles']); // gulp watch for stylus changes
     return buildScript('main.js', true); // browserify watch for JS changes
 });

@@ -6,8 +6,8 @@ var io = require('socket.io'),
     port = process.env.PORT || 5000;
 
 app.use('/build', express.static(__dirname + '/build'));
-app.use('/javascript', express.static(__dirname + '/javascript'));
-app.use('/css', express.static(__dirname + '/css'));
+// app.use('/javascript', express.static(__dirname + '/javascript'));
+// app.use('/css', express.static(__dirname + '/css'));
 app.use(express.static(__dirname + "/public"));
 
 
@@ -21,14 +21,12 @@ server.listen(port);
 
 chat_room.sockets.on('connection', function(socket) {
 
-    var logoffTimer;
-
     socket.on('adduser', function(username, colour) {
         socket.username = username;
         socket.colour = colour;
         usernames[username] = username;
 
-        socket.emit('updatechat', 'SERVER', 'Welcome to the chat room!');
+        socket.emit('updatechat', 'SERVER', 'Welcome to the chat!');
         socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
         chat_room.sockets.emit('updateusers', usernames);
     });

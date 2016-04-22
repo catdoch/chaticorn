@@ -1,0 +1,29 @@
+// =============================================================================
+//  Fancy Underline
+// =============================================================================
+
+@mixin fancy_underline($color: #000000) {
+	position: relative;
+	overflow: visible;
+	text-decoration: none;
+	&:after {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 0;
+		//lower the underline
+		margin-top: 0;
+		background: transparent;
+	}
+	&:hover {
+		text-decoration: none;
+		&:after {
+			display: block;
+			height: 1px;
+			transition: width 0.2s ease, background-color 0.2s ease;
+			width: 100%;
+			background: $color;
+		}
+	}
+}

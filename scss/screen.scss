@@ -1,0 +1,35 @@
+// Normalize
+@import 'base/normalize';
+
+// Settings and mixins
+@import 'settings/font-face';
+@import 'settings/fonts';
+@import 'settings/colours';
+@import 'settings/breakpoints';
+
+@import 'tools/rems';
+@import 'tools/media-queries';
+@import 'tools/svg-ie8';
+
+@import 'patterns';
+
+// Site Foundations
+@import 'fontawesome/font-awesome';
+@import 'base/base';
+@import 'base/animations';
+@import 'base/icons';
+
+
+// Grid - CSS Wizardry grids
+// @import 'tools/grid'; // Use if required
+
+// Site specific files go here
+@import 'base/typography';
+
+// layout (apply grids to the site classes)
+// base (typography)
+
+// header, footer, and other common areas
+@import 'components';
+
+// page specifics

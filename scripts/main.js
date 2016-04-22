@@ -2,28 +2,8 @@ var sweetAlert = require('sweetalert');
 var $ = require('jquery');
 var moment = require('moment');
 
+
 $(document).ready(function() {
-
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
-    emojify.setConfig({
-        only_crawl_id: null, // Use to restrict where emojify.js applies
-        img_dir: 'https://github.global.ssl.fastly.net/images/icons/emoji/', // Directory for emoji images
-        ignored_tags: { // Ignore the following tags
-            'SCRIPT': 1,
-            'TEXTAREA': 1,
-            'A': 1,
-            'PRE': 1,
-            'CODE': 1
-        }
-    });
 
     var socket = io.connect();
 
@@ -37,6 +17,41 @@ $(document).ready(function() {
         inputPlaceholder: "What's your name?"
     });
 
+
+    /**
+     * @return {[type]}
+     */
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+
+    /**
+     * [only_crawl_id description]
+     * @type {[type]}
+     */
+    emojify.setConfig({
+        only_crawl_id: null, // Use to restrict where emojify.js applies
+        img_dir: 'https://github.global.ssl.fastly.net/images/icons/emoji/', // Directory for emoji images
+        ignored_tags: { // Ignore the following tags
+            'SCRIPT': 1,
+            'TEXTAREA': 1,
+            'A': 1,
+            'PRE': 1,
+            'CODE': 1
+        }
+    });
+
+
+    /**
+     * @param  {[type]}
+     * @return {[type]}
+     */
     socket.on('connect', function() {
         prompt;
         // call the server-side function 'adduser' 
@@ -51,15 +66,27 @@ $(document).ready(function() {
         });
     });
 
+
+    /**
+     * @param  {[type]}
+     * @param  {[type]}
+     * @param  {Date}
+     * @return {[type]}
+     */
     socket.on('updatechat', function(username, data, colour) {
         var date = new Date();
         var prettyDate = moment(date).fromNow();
 
-        $('#conversation').append('<li style="background-color:' + colour + '"><p>'+ prettyDate +'</p><br><b>' + username + ':</b><p> ' + data + '</p></li>');
+        $('#conversation').append('<li style="background-color:' + colour + '"><p><b>' + username + ':</b><p> ' + data + '</p><p class="date">'+ prettyDate +'</p></li>');
         $("#conversation").scrollTop($("#conversation")[0].scrollHeight);
         emojify.run();
     });
 
+
+    /**
+     * @param  {[type]}
+     * @return {[type]}
+     */
     socket.on('updateusers', function(data) {
         $('#users').empty();
         $.each(data, function(key, value) {
@@ -67,10 +94,20 @@ $(document).ready(function() {
         });
     });
 
+
+    /**
+     * @param  {[type]}
+     * @return {[type]}
+     */
     socket.on('exit', function(data) {
         log_chat_message(data.message);
     });
 
+
+    /**
+     * [nullDiv description]
+     * @type {[type]}
+     */
     var nullDiv = $('#users div');
 
     $.each(nullDiv, function(index, value) {
@@ -79,6 +116,11 @@ $(document).ready(function() {
         }
     });
 
+
+    /**
+     * @param  {[type]}
+     * @return {[type]}
+     */
     $('#datasend').click(function() {
         var message = $('#data').val();
         if (message.length) {

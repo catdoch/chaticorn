@@ -1,0 +1,29 @@
+/*doc
+---
+title: Has feature
+name: has-feature
+parent: helpers
+category: utilities
+author: Made by Many
+---
+
+A convenience method for targeting browser features with Modernizr
+
+Parameters:
+
+__$feature:__  feature to match against
+
+```
+@include has-feature($feature) {
+  selector {
+    ... styles ...
+  }
+}
+```
+*/
+
+@mixin has-feature($feature) {
+  html.#{$feature} & {
+    @content;
+  }
+}

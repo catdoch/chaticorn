@@ -1,0 +1,12 @@
+// Inline SVG fallback example (requires Modernizr)
+html.no-svg {
+
+    .icon {
+        background-image: url('/_img/png/sprite/svg.png');
+        // See png/sprite/svg.css
+        background-position: 0px 0px;
+        width: 0px;
+        height: 1px;
+    }
+
+}
