@@ -2,7 +2,6 @@
 	<head>
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.css">
-<!-- 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
 		<script src="/build/js/main.js"></script>
@@ -15,13 +14,16 @@
 				<ul id="conversation">
 				</ul>
 			</div>
-			<input type="text" name="chat_box" value="" id="data" placeholder="type to chat..." /><button id="datasend">Send</button>
-		</div>
-		<div class="sidebar">
-			<div id="userList">
-				<h4>Users Online</h4>
-				<div id="users"></div>
+			<div class="sidebar">
+				<div id="userList">
+					<h4>Users Online</h4>
+					<div id="users"></div>
+				</div>
 			</div>
+		</div>
+		<div class="button_input_group">
+			<input type="text" name="chat_box" value="" id="data" placeholder="type to chat..." />
+			<button id="datasend">Send</button>
 		</div>
 	</body>
 </html>

@@ -4,101 +4,90 @@ body {
     background-size: cover;
 }
 
-#userList {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid #999;
-    display: inline-block;
-    font-family: $font-main;
-    height: auto;
-    margin-bottom: ($baseline / 2);
-    overflow-y: scroll;
-    overflow: auto;
-    padding-bottom: $baseline;
-    position: relative;
-    width: 100%;
-
-    h4 {
-        padding: ($baseline / 2);
-        margin: 0px;
-        font-size: 1.5em;
-        text-decoration: underline;
-    }
-
-    #users div {
-        padding: ($baseline / 2);
-    }
-}
-
-
-#chatroom {
-    font-family: $font-main;
-    min-height: 300px;
-    border: 1px solid #999;
-    overflow: none;
-    width: 100%;
-    margin-bottom: ($baseline / 2);
-    position: relative;
-    display: inline-block;
-}
-
 .content-sidebar {
-    width: 95%;
-    float: left;
-    padding: 0px ($baseline / 2);
-    margin-bottom: $baseline;
-
-    @include breakpoint(medium){
-        width: 30%;
-        margin-bottom: 0px;
-    }
-}
-
-.sidebar {
-    width: 95%;
-    float: left;
-    padding: 0px ($baseline / 2);
-    margin-bottom: $baseline;
-
-    @include breakpoint(medium){
-        width: 30%;
-        margin-bottom: 0px;
-    }
-}
-
-#data {
-    padding: $baseline;
-    width: 100%;
-    height: auto;
-    font-size: 1em;
-    margin-right: ($baseline / 2);
+    display: block;
+    margin-bottom: ($baseline / 2);
 
     @include breakpoint (medium){
-        width: 85%;
-        padding: 100px;
+        display: flex;
+    }
+
+    #chatroom {
+        font-family: $font-main;
+        margin: ($baseline / 2) ($baseline / 2) 0px ($baseline / 2);
+        min-height: 300px;
+        border: 2px solid #22BCCC;
+        overflow: none;
+        display: block;
+
+        @include breakpoint (medium){
+            flex: 3 1 auto;
+            margin: ($baseline / 2) ($baseline / 4) 0px ($baseline / 2);
+        }
+
+        #conversation {
+            font-family: $font-main;
+            list-style: none;
+            padding: 0px;
+            overflow-y: scroll;
+            max-height: 300px;
+
+            li {
+                padding: 5px 10px;
+                opacity: 0.85;
+                border-top: 1px solid $white;
+
+                .date{
+                    display: block;
+                    font-size: 10px;
+                    text-align: right;
+                    padding-top: ($baseline / 3);
+                }
+            }
+        }
+    }
+
+    .sidebar {
+        margin: ($baseline / 2) ($baseline / 2) 0px ($baseline / 4);
+        display: block;
+        border: 2px solid #22BCCC;
+        background: rgba(255, 255, 255, 0.85);
+        overflow-y: scroll;
+        overflow: auto;
+
+        @include breakpoint (medium){
+            flex: 1 0 auto;
+        }
+
+        #userList {
+            h4 {
+                padding: ($baseline / 2);
+                margin: 0px;
+                font-size: 1.5em;
+                text-decoration: underline;
+            }
+
+            #users div {
+                padding: ($baseline / 2);
+            }
+        }
     }
 }
 
-#conversation {
-    font-family: $font-main;
-    list-style: none;
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    top: 0;
-    overflow: auto;
-    padding: 0px;
+.button_input_group{
+    display: flex;
+    margin: 0 ($baseline / 2) 0px ($baseline / 2);
 
-    li {
-        padding: 5px 10px;
-        opacity: 0.85;
-        border-top: 1px solid $white;
+    #data {
+        padding: ($baseline / 2);
+        flex: 2.5 1 auto;
+        height: auto;
+        font-size: 1em;
+        margin-right: ($baseline / 2);
+    }
 
-        .date{
-            display: block;
-            font-size: 10px;
-            text-align: right;
-            padding-top: ($baseline / 3);
-        }
+    #datasend{
+        flex: 1 1 auto;
     }
 }
 
