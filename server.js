@@ -5,20 +5,26 @@ var io = require('socket.io'),
     server = http.createServer(app),
     port = process.env.PORT || 5000;
 
+/**
+ * Direct app to 
+ * correct paths
+ */
 app.use('/build', express.static(__dirname + '/build'));
-// app.use('/javascript', express.static(__dirname + '/javascript'));
-// app.use('/css', express.static(__dirname + '/css'));
 app.use(express.static(__dirname + "/public"));
 
 
 
 var chat_room = io.listen(server);
-
 var usernames = {};
 
 server.listen(port);
 
 
+/**
+ * On connection start events
+ * @param  {socket}
+ * @return undefined
+ */
 chat_room.sockets.on('connection', function(socket) {
 
     socket.on('adduser', function(username, colour) {

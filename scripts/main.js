@@ -1,3 +1,6 @@
+/**
+ * Set requires for this file
+ */
 var sweetAlert = require('sweetalert');
 var $ = require('jquery');
 var moment = require('moment');
@@ -19,25 +22,27 @@ $(document).ready(function() {
 
 
     /**
-     * @return {[type]}
+     * Get random colour
+     * to assign to user
+     * @return colour
      */
-    function getRandomColor() {
+    function getRandomColour() {
         var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
+        var colour = '#';
         for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+            colour += letters[Math.floor(Math.random() * 16)];
         }
-        return color;
+        return colour;
     }
 
 
     /**
-     * [only_crawl_id description]
-     * @type {[type]}
+     * Set config for emojis
+     * including img dir
      */
     emojify.setConfig({
         only_crawl_id: null, // Use to restrict where emojify.js applies
-        img_dir: 'https://github.global.ssl.fastly.net/images/icons/emoji/', // Directory for emoji images
+        img_dir: 'https://github.global.ssl.fastly.net/images/icons/emoji/',
         ignored_tags: { // Ignore the following tags
             'SCRIPT': 1,
             'TEXTAREA': 1,
@@ -49,29 +54,29 @@ $(document).ready(function() {
 
 
     /**
-     * @param  {[type]}
-     * @return {[type]}
+     * On socket connect launch
+     * alert box for username
+     * Emit add user to chat and assign
+     * colour
      */
     socket.on('connect', function() {
         prompt;
         // call the server-side function 'adduser' 
-        //and send one parameter (value of prompt)
-
         $('.confirm').click(function() {
             var value = $('.sweet-alert input').val();
             if (value === "") {
                 value = 'Anonymous';
             }
-            socket.emit('adduser', value, getRandomColor());
+            socket.emit('adduser', value, getRandomColour());
         });
     });
 
 
     /**
-     * @param  {[type]}
-     * @param  {[type]}
-     * @param  {Date}
-     * @return {[type]}
+     * @param  {username}
+     * @param  {data} - text value
+     * @param  {colour} - user colour
+     * @return append of html
      */
     socket.on('updatechat', function(username, data, colour) {
         var date = new Date();
@@ -84,8 +89,9 @@ $(document).ready(function() {
 
 
     /**
-     * @param  {[type]}
-     * @return {[type]}
+     * Update users and add to html
+     * @param  {data}
+     * @return append user to html
      */
     socket.on('updateusers', function(data) {
         $('#users').empty();
@@ -96,8 +102,10 @@ $(document).ready(function() {
 
 
     /**
-     * @param  {[type]}
-     * @return {[type]}
+     * On socket disconnect log
+     * message to chat
+     * @param  {data}
+     * @return log message
      */
     socket.on('exit', function(data) {
         log_chat_message(data.message);
@@ -105,8 +113,8 @@ $(document).ready(function() {
 
 
     /**
-     * [nullDiv description]
-     * @type {[type]}
+     * If user div is empty
+     * hide from list
      */
     var nullDiv = $('#users div');
 
@@ -118,19 +126,25 @@ $(document).ready(function() {
 
 
     /**
-     * @param  {[type]}
-     * @return {[type]}
+     * On button click send data
+     * and emit message
      */
     $('#datasend').click(function() {
         var message = $('#data').val();
         if (message.length) {
             $('#data').val('');
-            // tell server to execute 'sendchat' and send along one parameter
+            // tell server to execute 'sendchat' and
+            // send along one parameter
             socket.emit('sendchat', message);
         }
     });
 
-    // when the client hits ENTER on their keyboard
+
+    /**
+     * On enter send data
+     * and emit message and 
+     * refocus
+     */
     $('#data').keypress(function(e) {
         if (e.which == 13) {
             $(this).blur();
