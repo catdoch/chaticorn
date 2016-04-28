@@ -75,7 +75,7 @@ $(document).ready(function() {
      */
     socket.on('updatechat', function(username, data, colour) {
         var date = new Date();
-        var prettyDate = moment(date).format('kk:m');
+        var prettyDate = moment(date).format('kk:mm');
 
         $('#conversation').append('<li style="background-color:' + colour + '"><p><b>' + username + ':</b><p> ' + data + '</p><p class="date">'+ prettyDate +'</p></li>');
         $("#conversation").scrollTop($("#conversation")[0].scrollHeight);
